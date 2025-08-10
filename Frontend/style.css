@@ -1,0 +1,195 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #2e004f 0%, #7a2ccf 100%);
+    color: #eee;
+    min-height: 100vh;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1 {
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 5px rgba(122,44,207,0.8);
+    user-select: none;
+}
+#search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+#search-container input {
+    flex: 1;
+    min-width: 200px;
+    max-width: 100%;
+    font-size: 1rem;
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    background: #3a1c6e;
+    color: #ddd;
+    box-shadow: 0 2px 6px rgba(122,44,207,0.4);
+    transition: background-color 0.3s ease;
+}
+#search-container input::placeholder {
+    color: #b9a9e0;
+}
+#search-container input:focus {
+    background: #533294;
+    color: #fff;
+}
+#search-container button {
+    flex-shrink: 0;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 50px;
+    border: none;
+    background: #7a2ccf;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 6px 12px #7a2ccfcc;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+#search-container button:hover {
+    background: #5f22b3;
+    box-shadow: 0 8px 16px #5f22b3cc;
+}
+#results {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.track {
+    background: #3a1c6e;
+    border-radius: 15px;
+    padding: 15px 20px;
+    box-shadow: 0 8px 15px rgba(58,28,110,0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+    transition: transform 0.2s ease;
+}
+.track:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(58,28,110,0.9);
+}
+.track img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 6px 12px rgba(58,28,110,0.7);
+}
+.track p {
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-align: center;
+    color: #d2bfff;
+}
+.track audio {
+    width: 100%;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.btn-details {
+    padding: 8px 15px;
+    margin: 4px;
+    background: #7a2ccf;
+    border: none;
+    color: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+.btn-details:hover {
+    background: #5f22b3;
+}
+/* Modal */
+#modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+#modal.active {
+    display: flex;
+}
+#modal-content {
+background: #3a1c6e;
+border-radius: 15px;
+max-width: 500px;       /* limite de largura */
+width: 90vw;            /* responsivo, até 90% da largura da viewport */
+max-height: 80vh;       /* limite de altura para não passar da tela */
+overflow-y: auto;       /* barra de rolagem vertical se ultrapassar */
+padding: 20px 30px;
+box-shadow: 0 8px 25px rgba(58,28,110,0.9);
+color: #eee;
+position: relative;
+}
+
+#modal-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #eee;
+    cursor: pointer;
+}
+#modal h2 {
+    margin-bottom: 15px;
+}
+#modal img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 6px 12px rgba(58,28,110,0.7);
+}
+#modal p {
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+@media (max-width: 1024px) {
+    #results {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 700px;
+    }
+}
+@media (max-width: 600px) {
+    #results {
+    grid-template-columns: 1fr;
+    max-width: 350px;
+    }
+    #search-container {
+    flex-direction: column;
+    gap: 10px;
+    max-width: 90vw;
+    }
+    #search-container input, 
+    #search-container button {
+    width: 100%;
+    }
+}
